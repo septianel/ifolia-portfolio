@@ -5,19 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Ifolia Community Management System portfolio case study."
+      content="Portfolio case study Ifolia Community Management System."
     />
     <title>Ifolia Portfolio | Community Management System</title>
     <style>
       :root {
-        --green: #22a867;
-        --green-dark: #0f6f43;
-        --green-soft: #eaf8f0;
-        --ink: #1d3327;
-        --muted: #66766b;
-        --line: rgba(29, 51, 39, 0.1);
-        --surface: rgba(255, 255, 255, 0.9);
-        --shadow: 0 24px 70px rgba(19, 67, 39, 0.12);
+        --ink: #081c13;
+        --ink-2: #123322;
+        --green: #26b96f;
+        --green-2: #0f8a51;
+        --green-3: #dff8ea;
+        --mint: #effcf5;
+        --paper: #fffaf0;
+        --line: rgba(11, 38, 25, 0.12);
+        --muted: #66766d;
+        --soft: #f7faf8;
+        --white: #ffffff;
+        --orange: #ffb35c;
+        --red: #f25f5c;
+        --shadow: 0 30px 90px rgba(3, 37, 20, 0.16);
+        --radius: 30px;
       }
 
       * {
@@ -32,11 +39,12 @@
         margin: 0;
         overflow-x: hidden;
         background:
-          radial-gradient(circle at top left, rgba(34, 168, 103, 0.15), transparent 32rem),
-          linear-gradient(180deg, #f7fbf8 0%, #ffffff 46%, #eff9f2 100%);
+          radial-gradient(circle at 8% 8%, rgba(38, 185, 111, 0.18), transparent 28rem),
+          radial-gradient(circle at 96% 16%, rgba(255, 179, 92, 0.12), transparent 26rem),
+          linear-gradient(180deg, #f2fbf6 0%, #ffffff 38%, #f5fbf7 100%);
         color: var(--ink);
         font-family:
-          Montserrat,
+          Inter,
           "Segoe UI",
           system-ui,
           -apple-system,
@@ -44,592 +52,796 @@
           sans-serif;
       }
 
+      img {
+        max-width: 100%;
+      }
+
       a {
         color: inherit;
+        text-decoration: none;
       }
 
-      .page {
-        min-height: 100vh;
-      }
-
-      .container {
-        width: min(1160px, calc(100% - 32px));
+      .shell {
+        width: min(1180px, calc(100% - 40px));
         margin: 0 auto;
       }
 
-      .nav {
+      .topbar {
         position: sticky;
-        top: 16px;
+        top: 18px;
         z-index: 10;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        margin-top: 16px;
-        border: 1px solid rgba(34, 168, 103, 0.18);
-        border-radius: 24px;
-        padding: 14px 18px;
-        background: rgba(255, 255, 255, 0.78);
-        box-shadow: 0 18px 45px rgba(25, 74, 45, 0.08);
-        backdrop-filter: blur(16px);
+        gap: 18px;
+        margin-top: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        border-radius: 999px;
+        padding: 12px 14px 12px 18px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 18px 50px rgba(4, 42, 23, 0.1);
+        backdrop-filter: blur(18px);
       }
 
       .brand {
         display: flex;
         align-items: center;
         gap: 12px;
+        min-width: 0;
       }
 
-      .brand img {
-        width: 46px;
-        height: 46px;
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        border: 1px solid rgba(38, 185, 111, 0.2);
+        border-radius: 18px;
+        background: #f2fff8;
+      }
+
+      .brand-mark img {
+        width: 34px;
+        height: 34px;
         object-fit: contain;
       }
 
-      .brand strong {
+      .brand-copy strong {
         display: block;
-        color: var(--green);
-        font-size: 16px;
-        letter-spacing: 0.06em;
+        color: var(--green-2);
+        font-size: 15px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
       }
 
-      .brand span {
+      .brand-copy span {
+        display: block;
         color: var(--muted);
         font-size: 12px;
+        font-weight: 700;
       }
 
-      .pill,
-      .button {
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .button,
+      .tag {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        gap: 8px;
         border-radius: 999px;
-        font-weight: 800;
-        text-decoration: none;
-      }
-
-      .pill {
-        border: 1px solid rgba(34, 168, 103, 0.22);
-        padding: 8px 12px;
-        color: var(--green-dark);
-        background: var(--green-soft);
-        font-size: 12px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+        font-weight: 900;
       }
 
       .button {
-        min-height: 46px;
-        padding: 0 20px;
+        min-height: 44px;
+        padding: 0 18px;
+        border: 1px solid var(--line);
+        background: var(--white);
+        color: var(--ink-2);
       }
 
       .button.primary {
-        border: 1px solid var(--green);
-        color: #fff;
-        background: linear-gradient(135deg, #2fd07f, #15864f);
-        box-shadow: 0 14px 34px rgba(34, 168, 103, 0.26);
+        border-color: transparent;
+        background: var(--green);
+        color: var(--white);
+        box-shadow: 0 16px 38px rgba(38, 185, 111, 0.32);
       }
 
-      .button.secondary {
-        border: 1px solid rgba(34, 168, 103, 0.34);
-        color: var(--green-dark);
-        background: #fff;
+      .button.dark {
+        border-color: rgba(255, 255, 255, 0.14);
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .tag {
+        width: fit-content;
+        border: 1px solid rgba(38, 185, 111, 0.2);
+        padding: 8px 12px;
+        background: var(--green-3);
+        color: var(--green-2);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
       }
 
       .hero {
         display: grid;
-        grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.96fr);
-        gap: clamp(32px, 5vw, 72px);
+        grid-template-columns: minmax(0, 0.98fr) minmax(360px, 1.02fr);
+        gap: clamp(34px, 5vw, 72px);
         align-items: center;
-        padding: clamp(56px, 8vw, 108px) 0 44px;
+        padding: clamp(46px, 7vw, 86px) 0 54px;
       }
 
-      .hero h1 {
+      .hero-copy h1 {
         max-width: 760px;
-        margin: 18px 0 0;
-        color: #163522;
-        font-size: clamp(42px, 7.2vw, 92px);
-        line-height: 0.94;
-        letter-spacing: -0.055em;
+        margin: 20px 0 0;
+        color: var(--ink);
+        font-size: clamp(50px, 8vw, 112px);
+        line-height: 0.88;
+        letter-spacing: -0.075em;
       }
 
-      .hero p,
-      .section-head p,
-      .engineering-copy p,
-      .cta p {
-        color: var(--muted);
-        font-size: clamp(16px, 2vw, 18px);
+      .hero-copy h1 span {
+        color: var(--green-2);
+      }
+
+      .hero-copy p {
+        max-width: 670px;
+        margin: 24px 0 0;
+        color: #43564b;
+        font-size: clamp(17px, 2vw, 20px);
         line-height: 1.75;
+        font-weight: 650;
       }
 
-      .hero p {
-        max-width: 680px;
-        margin: 22px 0 0;
-      }
-
-      .actions {
+      .hero-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-top: 28px;
+        margin-top: 30px;
       }
 
-      .privacy {
-        max-width: 660px;
-        margin-top: 18px;
-        border-left: 4px solid var(--green);
-        border-radius: 14px;
-        padding: 14px 16px;
-        color: #466250;
-        background: rgba(255, 255, 255, 0.78);
+      .safe-note {
+        max-width: 620px;
+        margin-top: 24px;
+        border: 1px solid rgba(38, 185, 111, 0.26);
+        border-left: 5px solid var(--green);
+        border-radius: 20px;
+        padding: 16px 18px;
+        background: rgba(255, 255, 255, 0.76);
+        color: #355845;
+        font-weight: 760;
+        line-height: 1.55;
       }
 
-      .hero-visual {
+      .showcase {
         position: relative;
-        min-height: 560px;
-        overflow: hidden;
-        border: 1px solid rgba(34, 168, 103, 0.18);
-        border-radius: 32px;
-        background: #e7f1eb;
+        border-radius: 42px;
+        padding: 18px;
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.18)),
+          linear-gradient(160deg, rgba(38, 185, 111, 0.22), rgba(8, 28, 19, 0.05));
         box-shadow: var(--shadow);
       }
 
-      .hero-visual img {
+      .device {
+        position: relative;
+        overflow: hidden;
+        min-height: 620px;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        border-radius: 34px;
+        background: var(--ink);
+      }
+
+      .device img {
         width: 100%;
-        height: 100%;
-        min-height: 560px;
+        height: 620px;
         object-fit: cover;
+        opacity: 0.96;
       }
 
-      .float-card {
+      .device::after {
+        content: "";
         position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, transparent 42%, rgba(8, 28, 19, 0.8) 100%),
+          radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.28), transparent 16rem);
+      }
+
+      .device-panel {
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
+        left: 24px;
+        z-index: 1;
         display: grid;
-        gap: 4px;
-        max-width: 282px;
-        border: 1px solid rgba(255, 255, 255, 0.75);
-        border-radius: 18px;
-        padding: 16px;
-        background: rgba(255, 255, 255, 0.88);
-        box-shadow: 0 20px 45px rgba(21, 62, 37, 0.14);
-        backdrop-filter: blur(14px);
+        gap: 12px;
       }
 
-      .float-card strong {
-        color: var(--ink);
-      }
-
-      .float-card span {
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      .float-card.top {
-        top: 20px;
-        right: 20px;
-      }
-
-      .float-card.bottom {
-        bottom: 20px;
-        left: 20px;
-      }
-
-      .metrics,
-      .features,
-      .workflow {
-        display: grid;
-        gap: 16px;
-      }
-
-      .metrics {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .card,
-      .engineering,
-      .stack,
-      .cta {
-        border: 1px solid var(--line);
-        background: var(--surface);
-        box-shadow: 0 18px 48px rgba(27, 69, 42, 0.08);
-      }
-
-      .card {
+      .mini-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
         border-radius: 22px;
-        padding: 22px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
       }
 
-      .metric-value {
-        color: var(--green);
-        font-size: 34px;
+      .mini-card strong {
+        display: block;
+        color: var(--ink);
+        font-size: 16px;
+      }
+
+      .mini-card span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .mini-icon {
+        display: grid;
+        flex: 0 0 auto;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        background: var(--green-3);
+        color: var(--green-2);
         font-weight: 950;
       }
 
-      .card h3,
-      .card strong,
-      .engineering-item strong {
-        margin: 0;
-        color: #273b30;
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 18px;
       }
 
-      .card p,
-      .engineering-item span {
-        margin: 8px 0 0;
-        color: #6d7d72;
-        line-height: 1.62;
+      .stat-card {
+        min-height: 164px;
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: 0 18px 50px rgba(5, 49, 25, 0.08);
+      }
+
+      .stat-value {
+        color: var(--green-2);
+        font-size: clamp(34px, 4vw, 48px);
+        line-height: 0.95;
+        font-weight: 950;
+        letter-spacing: -0.05em;
+      }
+
+      .stat-card strong,
+      .case-card strong,
+      .flow-card strong,
+      .value-item strong {
+        display: block;
+        margin-top: 12px;
+        color: var(--ink-2);
+        font-size: 18px;
+      }
+
+      .stat-card p,
+      .case-card p,
+      .flow-card p,
+      .value-item p,
+      .section-head p,
+      .split-copy p,
+      .closing p {
+        color: var(--muted);
+        line-height: 1.68;
+        font-weight: 650;
       }
 
       section {
-        margin-top: clamp(48px, 7vw, 88px);
+        margin-top: clamp(54px, 7vw, 96px);
       }
 
       .section-head {
-        max-width: 760px;
-        margin-bottom: 24px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 22px;
+        margin-bottom: 26px;
       }
 
       .section-head h2,
-      .engineering-copy h2,
-      .cta h2 {
+      .split-copy h2,
+      .closing h2 {
+        max-width: 820px;
+        margin: 12px 0 0;
+        color: var(--ink);
+        font-size: clamp(36px, 5vw, 72px);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+
+      .section-head p {
+        max-width: 480px;
         margin: 0;
-        color: #163522;
-        font-size: clamp(32px, 4vw, 52px);
-        line-height: 1.05;
-        letter-spacing: -0.04em;
       }
 
-      .features {
+      .feature-grid {
+        display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
       }
 
-      .feature-code,
-      .step-number {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 44px;
-        height: 44px;
-        margin-bottom: 16px;
-        border-radius: 999px;
-        color: var(--green-dark);
-        background: var(--green-soft);
+      .case-card,
+      .flow-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 24px;
+        background: var(--white);
+        box-shadow: 0 18px 46px rgba(5, 49, 25, 0.08);
+      }
+
+      .case-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--green), rgba(38, 185, 111, 0.08));
+      }
+
+      .case-number,
+      .flow-number {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 16px;
+        background: var(--mint);
+        color: var(--green-2);
         font-weight: 950;
       }
 
-      .workflow {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .engineering {
+      .flow-wrap {
         display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
-        gap: 32px;
-        align-items: start;
-        border-radius: 30px;
-        padding: clamp(26px, 4vw, 42px);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
       }
 
-      .engineering-list {
+      .flow-card {
+        min-height: 260px;
+        background:
+          linear-gradient(180deg, #ffffff, #f9fffb);
+      }
+
+      .flow-card::after {
+        content: "";
+        position: absolute;
+        right: -34px;
+        bottom: -34px;
+        width: 110px;
+        height: 110px;
+        border-radius: 999px;
+        background: rgba(38, 185, 111, 0.08);
+      }
+
+      .value-section {
+        display: grid;
+        grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1.14fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .split-copy {
+        border-radius: var(--radius);
+        padding: clamp(28px, 4vw, 44px);
+        background: var(--ink);
+        color: var(--white);
+        box-shadow: var(--shadow);
+      }
+
+      .split-copy h2 {
+        color: var(--white);
+      }
+
+      .split-copy p {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .value-list {
         display: grid;
         gap: 12px;
       }
 
-      .engineering-item {
-        border: 1px solid rgba(34, 168, 103, 0.14);
-        border-radius: 18px;
-        padding: 16px;
-        background: #f7fffa;
+      .value-item {
+        border: 1px solid rgba(38, 185, 111, 0.16);
+        border-radius: 24px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 16px 42px rgba(5, 49, 25, 0.07);
       }
 
-      .stack {
-        border-radius: 30px;
-        padding: clamp(26px, 4vw, 42px);
+      .tech {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: clamp(28px, 4vw, 44px);
+        background: var(--white);
+        box-shadow: 0 18px 50px rgba(5, 49, 25, 0.08);
       }
 
-      .stack-list {
+      .tech-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 10px;
+        margin-top: 22px;
       }
 
-      .stack-list span {
-        border: 1px solid rgba(34, 168, 103, 0.24);
+      .tech-list span {
+        border: 1px solid rgba(38, 185, 111, 0.24);
         border-radius: 999px;
-        padding: 11px 16px;
-        color: var(--green-dark);
-        background: #f2fbf6;
+        padding: 11px 15px;
+        background: var(--mint);
+        color: var(--green-2);
         font-weight: 850;
       }
 
-      .cta {
-        display: grid;
-        justify-items: center;
-        border-radius: 34px 34px 0 0;
-        padding: clamp(32px, 5vw, 64px);
+      .closing {
+        margin-bottom: 0;
+        border-radius: 40px 40px 0 0;
+        padding: clamp(36px, 6vw, 78px);
+        background:
+          radial-gradient(circle at 20% 20%, rgba(38, 185, 111, 0.2), transparent 20rem),
+          var(--ink);
+        color: var(--white);
         text-align: center;
       }
 
-      .cta p {
-        max-width: 760px;
+      .closing h2 {
+        max-width: 900px;
+        margin: 12px auto 0;
+        color: var(--white);
       }
 
-      @media (max-width: 960px) {
+      .closing p {
+        max-width: 720px;
+        margin: 20px auto 0;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .footer {
+        padding: 22px 0 28px;
+        color: rgba(255, 255, 255, 0.7);
+        background: var(--ink);
+        text-align: center;
+        font-size: 13px;
+        font-weight: 750;
+      }
+
+      @media (max-width: 1040px) {
         .hero,
-        .engineering {
+        .value-section {
           grid-template-columns: 1fr;
         }
 
-        .metrics,
-        .features,
-        .workflow {
+        .stats,
+        .flow-wrap {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
-      @media (max-width: 640px) {
-        .container {
-          width: min(100% - 20px, 1160px);
+      @media (max-width: 780px) {
+        .shell {
+          width: min(100% - 24px, 1180px);
         }
 
-        .nav {
+        .topbar {
           top: 10px;
-          border-radius: 18px;
+          border-radius: 24px;
         }
 
-        .brand span {
+        .brand-copy span,
+        .nav-actions .button:not(.primary) {
           display: none;
         }
 
-        .brand img {
-          width: 42px;
-          height: 42px;
+        .hero {
+          padding-top: 38px;
         }
 
-        .nav .button {
-          min-height: 40px;
+        .hero-copy h1 {
+          font-size: clamp(46px, 14vw, 72px);
+        }
+
+        .hero-actions {
+          display: grid;
+        }
+
+        .showcase {
+          border-radius: 30px;
+          padding: 12px;
+        }
+
+        .device,
+        .device img {
+          min-height: 470px;
+          height: 470px;
+        }
+
+        .stats,
+        .feature-grid,
+        .flow-wrap {
+          grid-template-columns: 1fr;
+        }
+
+        .stat-card {
+          min-height: auto;
+        }
+
+        .section-head {
+          display: block;
+        }
+
+        .section-head p {
+          margin-top: 14px;
+        }
+      }
+
+      @media (max-width: 460px) {
+        .shell {
+          width: min(100% - 18px, 1180px);
+        }
+
+        .topbar {
+          padding: 10px;
+        }
+
+        .brand-mark {
+          width: 44px;
+          height: 44px;
+        }
+
+        .brand-copy strong {
+          font-size: 13px;
+        }
+
+        .button {
+          min-height: 42px;
           padding: 0 14px;
           font-size: 13px;
         }
 
-        .hero {
-          padding-top: 44px;
-        }
-
-        .hero h1 {
-          font-size: clamp(38px, 13vw, 56px);
-        }
-
-        .actions {
-          display: grid;
-        }
-
-        .hero-visual,
-        .hero-visual img {
-          min-height: 370px;
-        }
-
-        .float-card {
-          position: static;
-          max-width: none;
-          margin: 12px;
-        }
-
-        .hero-visual {
-          display: grid;
-        }
-
-        .metrics,
-        .features,
-        .workflow {
-          grid-template-columns: 1fr;
-        }
-
-        .engineering,
-        .stack,
-        .cta {
+        .safe-note,
+        .case-card,
+        .flow-card,
+        .value-item,
+        .tech {
           border-radius: 22px;
+        }
+
+        .mini-card {
+          align-items: flex-start;
         }
       }
     </style>
   </head>
   <body>
-    <main class="page">
-      <nav class="container nav" aria-label="Portfolio navigation">
-        <div class="brand">
-          <img src="./assets/logo.png" alt="Cluster Ifolia" />
-          <div>
-            <strong>IFOLIA</strong>
+    <main>
+      <nav class="shell topbar" aria-label="Portfolio navigation">
+        <a class="brand" href="#top" aria-label="Ifolia Portfolio">
+          <span class="brand-mark">
+            <img src="./assets/logo.png" alt="Cluster Ifolia" />
+          </span>
+          <span class="brand-copy">
+            <strong>IFOLIA CMS</strong>
             <span>Community Management System</span>
-          </div>
+          </span>
+        </a>
+
+        <div class="nav-actions">
+          <a class="button" href="#features">Fitur</a>
+          <a class="button" href="#workflow">Flow</a>
+          <a class="button primary" href="#value">Nilai Teknis</a>
         </div>
-        <a class="button secondary" href="#engineering">Nilai Teknis</a>
       </nav>
 
-      <header class="container hero">
-        <div>
-          <span class="pill">Portfolio Case Study</span>
-          <h1>Platform digital untuk pengelolaan cluster perumahan.</h1>
+      <header id="top" class="shell hero">
+        <div class="hero-copy">
+          <span class="tag">Portfolio Case Study</span>
+          <h1>Sistem digital untuk <span>operasional cluster</span>.</h1>
           <p>
-            Ifolia membantu pengurus dan warga mengelola administrasi cluster:
-            data warga, tagihan IPL, kas paguyuban, surat menyurat, keamanan,
-            aduan, jadwal satpam, dan notifikasi Telegram dalam satu aplikasi web + PWA.
+            Ifolia adalah platform web admin dan PWA warga untuk mengelola
+            data penghuni, IPL, kas paguyuban, surat menyurat, aduan,
+            keamanan, jadwal satpam, dan notifikasi Telegram dalam satu sistem.
           </p>
-          <div class="actions">
-            <a class="button primary" href="#features">Lihat Fitur</a>
-            <a class="button secondary" href="#workflow">Lihat Flow</a>
+          <div class="hero-actions">
+            <a class="button primary" href="#features">Lihat kemampuan project</a>
+            <a class="button dark" href="#workflow">Lihat alur surat</a>
           </div>
-          <div class="privacy">
-            Halaman ini dibuat khusus untuk portfolio HR dan tidak menampilkan data warga asli,
-            credential, token, maupun source code private project.
+          <div class="safe-note">
+            Portfolio ini memakai materi aman untuk publik. Tidak ada data warga asli,
+            credential, token, database URL, atau source private yang dipublikasikan.
           </div>
         </div>
 
-        <div class="hero-visual" aria-label="Preview aplikasi Ifolia">
-          <img src="./assets/cover-ifolia.webp" alt="Cluster Ifolia illustration" />
-          <div class="float-card top">
-            <strong>Web Admin + PWA Warga</strong>
-            <span>Responsive, role-based, mobile-ready.</span>
-          </div>
-          <div class="float-card bottom">
-            <strong>Surat PDF/JPG + QR</strong>
-            <span>Preview, TTD digital, export dokumen, dan verifikasi QR.</span>
+        <div class="showcase" aria-label="Ifolia visual preview">
+          <div class="device">
+            <img src="./assets/cover-ifolia.webp" alt="Ilustrasi Cluster Ifolia" />
+            <div class="device-panel">
+              <div class="mini-card">
+                <div>
+                  <strong>Admin Panel + PWA</strong>
+                  <span>Role-based, mobile-ready, dan dipakai untuk workflow harian.</span>
+                </div>
+                <span class="mini-icon">01</span>
+              </div>
+              <div class="mini-card">
+                <div>
+                  <strong>Surat PDF/JPG + QR</strong>
+                  <span>Preview, approval TTD, arsip, dan verifikasi dokumen.</span>
+                </div>
+                <span class="mini-icon">02</span>
+              </div>
+            </div>
           </div>
         </div>
       </header>
 
-      <section class="container metrics" aria-label="Project highlights">
-        <article class="card">
-          <div class="metric-value">8+</div>
-          <strong>Modul utama</strong>
-          <p>Warga, IPL, keuangan, surat, keamanan, aduan, agenda, dan notifikasi.</p>
+      <section class="shell stats" aria-label="Project highlights">
+        <article class="stat-card">
+          <div class="stat-value">8+</div>
+          <strong>Modul operasional</strong>
+          <p>Warga, unit, IPL, keuangan, surat, keamanan, agenda, dan aduan.</p>
         </article>
-        <article class="card">
-          <div class="metric-value">3</div>
-          <strong>Role experience</strong>
-          <p>Admin/pengurus, warga, dan petugas operasional dengan akses berbeda.</p>
+        <article class="stat-card">
+          <div class="stat-value">3</div>
+          <strong>Experience role</strong>
+          <p>Admin/pengurus, warga, dan petugas operasional dengan hak akses berbeda.</p>
         </article>
-        <article class="card">
-          <div class="metric-value">PWA</div>
-          <strong>Mobile-ready</strong>
-          <p>Tampilan web dan mobile disesuaikan agar dapat dipakai dari HP.</p>
+        <article class="stat-card">
+          <div class="stat-value">PWA</div>
+          <strong>Mobile first</strong>
+          <p>Tampilan warga disiapkan agar nyaman dipakai dari handphone.</p>
         </article>
-        <article class="card">
-          <div class="metric-value">QR</div>
-          <strong>Verifikasi surat</strong>
-          <p>Dokumen final dapat diverifikasi melalui QR publik.</p>
+        <article class="stat-card">
+          <div class="stat-value">QR</div>
+          <strong>Verifikasi publik</strong>
+          <p>Surat final dapat dicek keasliannya melalui QR verifikasi.</p>
         </article>
       </section>
 
-      <section id="features" class="container">
+      <section id="features" class="shell">
         <div class="section-head">
-          <span class="pill">Fitur Utama</span>
-          <h2>Modul operasional cluster dalam satu sistem.</h2>
+          <div>
+            <span class="tag">Fitur Utama</span>
+            <h2>Produk bukan hanya dashboard, tapi sistem kerja.</h2>
+          </div>
           <p>
-            Dibangun untuk kebutuhan harian pengurus dan warga, dengan alur kerja yang bisa dipantau.
+            Setiap modul dibuat untuk mengurangi proses manual pengurus cluster
+            dan membuat warga bisa memantau layanan dari portal.
           </p>
         </div>
 
-        <div class="features">
-          <article class="card">
-            <span class="feature-code">01</span>
-            <h3>Manajemen Warga & Unit</h3>
-            <p>Master data warga, keluarga, unit rumah, kendaraan, dokumen, dan status penghuni.</p>
+        <div class="feature-grid">
+          <article class="case-card">
+            <span class="case-number">01</span>
+            <strong>Master Warga & Unit</strong>
+            <p>Data warga, keluarga, unit rumah, kendaraan, dokumen, arsip, dan status penghuni.</p>
           </article>
-          <article class="card">
-            <span class="feature-code">02</span>
-            <h3>IPL & Keuangan Cluster</h3>
-            <p>Tagihan bulanan, status pembayaran, validasi, kas paguyuban, laporan, dan saldo.</p>
+          <article class="case-card">
+            <span class="case-number">02</span>
+            <strong>IPL & Keuangan</strong>
+            <p>Tagihan bulanan, validasi pembayaran, kas paguyuban, hutang/piutang, dan laporan.</p>
           </article>
-          <article class="card">
-            <span class="feature-code">03</span>
-            <h3>Surat Menyurat Digital</h3>
-            <p>Permohonan warga, pembuatan surat, approval TTD, preview, export PDF/JPG, dan arsip.</p>
+          <article class="case-card">
+            <span class="case-number">03</span>
+            <strong>Surat Menyurat</strong>
+            <p>Permohonan warga, proses pengurus, pembuatan surat, TTD digital, dan export PDF/JPG.</p>
           </article>
-          <article class="card">
-            <span class="feature-code">04</span>
-            <h3>Keamanan & Satpam</h3>
-            <p>Jadwal petugas, log keamanan, laporan tamu, dan kontrol akses role operasional.</p>
+          <article class="case-card">
+            <span class="case-number">04</span>
+            <strong>Keamanan & Satpam</strong>
+            <p>Jadwal petugas, log keamanan, laporan tamu, dan pemisahan role operasional.</p>
           </article>
-          <article class="card">
-            <span class="feature-code">05</span>
-            <h3>Aduan & Info Warga</h3>
-            <p>Keluhan warga, pengumuman, agenda, kontak pengurus, dan monitoring tindak lanjut.</p>
+          <article class="case-card">
+            <span class="case-number">05</span>
+            <strong>Aduan & Informasi</strong>
+            <p>Pengumuman, agenda, kontak pengurus, laporan warga, dan monitoring tindak lanjut.</p>
           </article>
-          <article class="card">
-            <span class="feature-code">06</span>
-            <h3>Telegram Assistant</h3>
-            <p>Integrasi bot untuk notifikasi dan komunikasi operasional cluster.</p>
+          <article class="case-card">
+            <span class="case-number">06</span>
+            <strong>Telegram Assistant</strong>
+            <p>Bot untuk notifikasi operasional seperti tagihan, surat, dan informasi cluster.</p>
           </article>
         </div>
       </section>
 
-      <section id="workflow" class="container">
+      <section id="workflow" class="shell">
         <div class="section-head">
-          <span class="pill">Contoh Flow</span>
-          <h2>Surat menyurat warga sampai arsip final.</h2>
+          <div>
+            <span class="tag">Workflow Sample</span>
+            <h2>Contoh flow surat sampai dokumen final.</h2>
+          </div>
+          <p>
+            Flow dibuat agar warga, sekretaris, ketua, dan penandatangan bisa
+            melihat status yang sama tanpa membuat arsip liar.
+          </p>
         </div>
 
-        <div class="workflow">
-          <article class="card">
-            <span class="step-number">01</span>
-            <h3>Warga mengajukan</h3>
-            <p>Warga memilih jenis surat dan mengisi keperluan dari portal/PWA.</p>
+        <div class="flow-wrap">
+          <article class="flow-card">
+            <span class="flow-number">1</span>
+            <strong>Warga mengajukan</strong>
+            <p>Warga memilih jenis surat dan mengisi keperluan melalui PWA.</p>
           </article>
-          <article class="card">
-            <span class="step-number">02</span>
-            <h3>Pengurus memproses</h3>
-            <p>Sekretaris atau Ketua RT memeriksa, memberi catatan, dan mengoreksi jenis jika perlu.</p>
+          <article class="flow-card">
+            <span class="flow-number">2</span>
+            <strong>Pengurus memeriksa</strong>
+            <p>Sekretaris/Ketua RT memproses, memberi catatan, atau koreksi jenis surat.</p>
           </article>
-          <article class="card">
-            <span class="step-number">03</span>
-            <h3>Surat dibuat</h3>
-            <p>Admin membuat arsip resmi dari data permohonan tanpa kehilangan jejak monitoring.</p>
+          <article class="flow-card">
+            <span class="flow-number">3</span>
+            <strong>Surat dibuat</strong>
+            <p>Surat keluar dibuat dari data permohonan agar monitoring tetap tersambung.</p>
           </article>
-          <article class="card">
-            <span class="step-number">04</span>
-            <h3>TTD & download</h3>
-            <p>Penandatangan menyetujui, lalu warga mengunduh PDF/JPG dan QR bisa diverifikasi.</p>
+          <article class="flow-card">
+            <span class="flow-number">4</span>
+            <strong>TTD dan unduh</strong>
+            <p>Penandatangan menyetujui, warga mengunduh PDF/JPG, QR dapat diverifikasi.</p>
           </article>
         </div>
       </section>
 
-      <section id="engineering" class="container engineering">
-        <div class="engineering-copy">
-          <span class="pill">Engineering Value</span>
+      <section id="value" class="shell value-section">
+        <div class="split-copy">
+          <span class="tag">Engineering Value</span>
           <h2>Yang bisa dinilai HR dari project ini.</h2>
           <p>
-            Project ini menunjukkan kemampuan full-stack end-to-end: analisis proses bisnis,
-            arsitektur modular, implementasi backend, frontend PWA, integrasi bot Telegram,
-            workflow approval, export dokumen, dan deployment.
+            Project ini menunjukkan kemampuan full-stack end-to-end: analisis
+            kebutuhan, desain workflow, backend API, frontend PWA, database,
+            integrasi Telegram, export dokumen, dan deployment.
           </p>
         </div>
 
-        <div class="engineering-list">
-          <div class="engineering-item">
-            <strong>Full-stack delivery</strong>
-            <span>Frontend Vue 3, backend NestJS, database PostgreSQL/Prisma, dan service OCR.</span>
-          </div>
-          <div class="engineering-item">
-            <strong>RBAC dan workflow</strong>
-            <span>Hak akses disesuaikan per role agar warga, pengurus, bendahara, dan satpam tidak tumpang tindih.</span>
-          </div>
-          <div class="engineering-item">
+        <div class="value-list">
+          <article class="value-item">
+            <strong>Full-stack architecture</strong>
+            <p>Frontend Vue 3, backend NestJS, Prisma/PostgreSQL, dan service OCR.</p>
+          </article>
+          <article class="value-item">
+            <strong>Role-based access control</strong>
+            <p>Akses dipisah untuk admin, pengurus, warga, bendahara, satpam, dan penanggung jawab.</p>
+          </article>
+          <article class="value-item">
             <strong>Document rendering</strong>
-            <span>Preview surat menjadi sumber utama untuk export PDF/JPG agar tampilan konsisten.</span>
-          </div>
-          <div class="engineering-item">
+            <p>Preview surat menjadi sumber export PDF/JPG supaya tampilan dokumen konsisten.</p>
+          </article>
+          <article class="value-item">
             <strong>Production awareness</strong>
-            <span>Mempertimbangkan deploy script, environment, storage, log error, dan data privacy.</span>
-          </div>
+            <p>Memperhatikan env, storage, deploy script, privacy, logging, dan data integrity.</p>
+          </article>
         </div>
       </section>
 
-      <section class="container stack">
+      <section class="shell tech">
+        <span class="tag">Tech Stack</span>
         <div class="section-head">
-          <span class="pill">Tech Stack</span>
           <h2>Stack yang digunakan.</h2>
+          <p>Stack dipilih pragmatis untuk web admin, PWA warga, API modular, dan workflow operasional.</p>
         </div>
-        <div class="stack-list">
+        <div class="tech-list">
           <span>Vue 3</span>
           <span>Vite</span>
           <span>TypeScript</span>
@@ -643,13 +855,18 @@
         </div>
       </section>
 
-      <section class="container cta">
-        <h2>Siap ditampilkan sebagai portfolio teknis.</h2>
+      <section class="shell closing">
+        <span class="tag">Public Portfolio Ready</span>
+        <h2>Ringkas, aman, dan layak dikirim sebagai bukti project teknis.</h2>
         <p>
-          Gunakan halaman ini sebagai link publik ke HR. Untuk demo aplikasi asli,
-          gunakan akun demo dan database dummy agar data warga tetap aman.
+          Untuk demo aplikasi asli, gunakan akun demo dan database dummy agar data
+          warga tetap aman. Portfolio ini hanya menjelaskan scope, workflow, dan nilai teknis.
         </p>
       </section>
+
+      <footer class="footer">
+        IFOLIA Portfolio Case Study - Sanitized public showcase
+      </footer>
     </main>
   </body>
 </html>
